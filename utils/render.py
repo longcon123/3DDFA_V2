@@ -44,7 +44,7 @@ def render(img, ver_lst, tri, alpha=0.6, show_flag=False, wfp=None, with_bg_flag
 
     if wfp is not None:
         cv2.imwrite(wfp, res)
-        print(f'Save visualization result to {wfp}')
+        print('Save visualization result to'.format({wfp}))
 
     if show_flag:
         plot_image(res)

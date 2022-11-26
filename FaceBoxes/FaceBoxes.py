@@ -41,7 +41,7 @@ def viz_bbox(img, dets, wfp='out.jpg'):
         cy = b[1] + 12
         cv2.putText(img, text, (cx, cy), cv2.FONT_HERSHEY_DUPLEX, 0.5, (255, 255, 255))
     cv2.imwrite(wfp, img)
-    print(f'Viz bbox to {wfp}')
+    print('Viz bbox to'.format({wfp}))
 
 
 class FaceBoxes:
@@ -142,9 +142,9 @@ def main():
     face_boxes = FaceBoxes(timer_flag=True)
 
     fn = 'trump_hillary.jpg'
-    img_fp = f'../examples/inputs/{fn}'
+    img_fp = '../examples/inputs/'.format({fn})
     img = cv2.imread(img_fp)
-    print(f'input shape: {img.shape}')
+    print('input shape:'.format({img.shape}))
     dets = face_boxes(img)  # xmin, ymin, w, h
     # print(dets)
 

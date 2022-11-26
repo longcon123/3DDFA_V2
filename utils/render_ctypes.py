@@ -33,8 +33,8 @@ class TrianglesMeshRender(object):
             ambient=(0.3, 0.3, 0.3)
     ):
         if not osp.exists(clibs):
-            raise Exception(f'{clibs} not found, please build it first, by run '
-                            f'"gcc -shared -Wall -O3 render.c -o render.so -fPIC" in utils/asset directory')
+            raise Exception('{} not found, please build it first, by run '.format(clibs),
+                            '"gcc -shared -Wall -O3 render.c -o render.so -fPIC" in utils/asset directory')
 
         self._clibs = ctypes.CDLL(clibs)
 
@@ -81,7 +81,7 @@ def render(img, ver_lst, tri, alpha=0.6, show_flag=False, wfp=None, with_bg_flag
 
     if wfp is not None:
         cv2.imwrite(wfp, res)
-        print(f'Save visualization result to {wfp}')
+        print('Save visualization result to {}'.format(wfp))
 
     if show_flag:
         plot_image(res)

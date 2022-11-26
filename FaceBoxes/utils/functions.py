@@ -26,7 +26,7 @@ def remove_prefix(state_dict, prefix):
 
 def load_model(model, pretrained_path, load_to_cpu):
     if not osp.isfile(pretrained_path):
-        print(f'The pre-trained FaceBoxes model {pretrained_path} does not exist')
+        print('The pre-trained FaceBoxes model {} does not exist'.format(pretrained_path))
         sys.exit('-1')
     # print('Loading pretrained model from {}'.format(pretrained_path))
     if load_to_cpu:

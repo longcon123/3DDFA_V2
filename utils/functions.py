@@ -150,7 +150,7 @@ def draw_landmarks(img, pts, style='fancy', wfp=None, show_flag=False, **kwargs)
                          markeredgecolor=markeredgecolor, alpha=alpha)
     if wfp is not None:
         plt.savefig(wfp, dpi=150)
-        print(f'Save visualization result to {wfp}')
+        print('Save visualization result to'.format({wfp}))
 
     if show_flag:
         plt.show()

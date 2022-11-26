@@ -129,13 +129,20 @@ def viz_pose(img, param_lst, ver_lst, show_flag=False, wfp=None):
         P, pose = calc_pose(param)
         img = plot_pose_box(img, P, ver)
         # print(P[:, :3])
-        print(f'yaw: {pose[0]:.1f}, pitch: {pose[1]:.1f}, roll: {pose[2]:.1f}')
+        print('yaw: {}, pitch: {}'.format(pose[0],pose[1]))
 
-    if wfp is not None:
-        cv2.imwrite(wfp, img)
-        print(f'Save visualization result to {wfp}')
+    #if wfp is not None:
+        #cv2.imwrite(wfp, img)
+        #print('Save visualization result to'.format({wfp}))
 
     if show_flag:
         plot_image(img)
 
-    return img
+    return pose[0], pose[1]
+
+def get_pose(param_lst, ver_lst):
+    for param,_ in zip(param_lst, ver_lst):
+        _, pose = calc_pose(param)
+        #print('yaw: {}, pitch: {}'.format(pose[0],pose[1]))
+
+    return pose[0], pose[1]

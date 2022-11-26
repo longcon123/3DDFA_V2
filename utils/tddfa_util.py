@@ -91,7 +91,7 @@ def _parse_param(param):
     elif n == 141:
         trans_dim, shape_dim, exp_dim = 12, 100, 29
     else:
-        raise Exception(f'Undefined templated param parsing rule')
+        raise Exception('Undefined templated param parsing rule')
 
     R_ = param[:trans_dim].reshape(3, -1)
     R = R_[:, :3]

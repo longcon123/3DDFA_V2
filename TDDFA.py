@@ -44,7 +44,7 @@ class TDDFA(object):
         self.size = kvs.get('size', 120)
 
         param_mean_std_fp = kvs.get(
-            'param_mean_std_fp', make_abs_path(f'configs/param_mean_std_62d_{self.size}x{self.size}.pkl')
+            'param_mean_std_fp', make_abs_path('configs/param_mean_std_62d_{}x{}.pkl'.format(self.size,self.size))
         )
 
         # load model, default output is dimension with length 62 = 12(pose) + 40(shape) +10(expression)
@@ -96,7 +96,7 @@ class TDDFA(object):
                 # by landmarks
                 roi_box = parse_roi_box_from_landmark(obj)
             else:
-                raise ValueError(f'Unknown crop policy {crop_policy}')
+                raise ValueError('Unknown crop policy'.format({crop_policy}))
 
             roi_box_lst.append(roi_box)
             img = crop_img(img_ori, roi_box)
@@ -109,7 +109,7 @@ class TDDFA(object):
             if kvs.get('timer_flag', False):
                 end = time.time()
                 param = self.model(inp)
-                elapse = f'Inference: {(time.time() - end) * 1000:.1f}ms'
+                elapse = 'Inference: {} ms'.format(((time.time() - end) * 1000))
                 print(elapse)
             else:
                 param = self.model(inp)
