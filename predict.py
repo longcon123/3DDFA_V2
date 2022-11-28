@@ -6,7 +6,7 @@ import tensorflow as tf
 import csv
 import numpy as np
 import argparse
-import time
+from time import time
 
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -49,22 +49,26 @@ vid_list = os.listdir(all_video_path)
 
 th = 0.06
 for vid in vid_list:
-    vid_path = os.path.join(ROOT_DIR, vid)
+    vid_path = os.path.join(ROOT_DIR, all_video_path, vid)
     face_detect = False
     frame_count = 0
+    pred_label = 0
     pred_all = []
     time_all = []
     pred_all.append(vid)
     time_all.append(vid)
     start = time()    
     tensor_input = preprocess(video_path=vid_path)
-    pred_label = tf.get_static_value(revisit_model.predict(tensor_input)[0][0])
+    try:
+      pred_label = tf.get_static_value(revisit_model.predict(tensor_input)[0][0])
+    except:
+      pass
     if pred_label > th:
       pred_label = 1
     else:
       pred_label = 0
     end = time()
-    diff = int(start*1000 - end*1000)
+    diff = int(end*1000 - start*1000)
     pred_all.append(str(pred_label))
     time_all.append(str(diff))
     writer_f.writerow(pred_all)
@@ -72,5 +76,6 @@ for vid in vid_list:
     # print('Total frames: ', n_frames)
     # print('Num frames detect Face: ', frame_count)
     print('Video name: ', vid)
-    print('Label: ', pred_label)    
+    print('Label: ', pred_label)
+    print('Inf time: ', diff)  
 result_f.close()

@@ -16,9 +16,13 @@ def img2tf(image):
   return image
 
 def preprocess(video_path):
+    #print(video_path)
     cap = cv2.VideoCapture(video_path)
     n_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    #print(n_frames)
     face_detect = False
+    frame_count=0
+    output = None
     while(face_detect==False and frame_count < n_frames):
         ret, frame = cap.read()
         frame_count+=1
@@ -27,6 +31,6 @@ def preprocess(video_path):
             if face_frame is not None:
                 #cv2_imshow(face_frame)
                 face_detect=True
-                return img2tf(face_frame)
+                output = img2tf(face_frame)
     cap.release()
-     
+    return output
