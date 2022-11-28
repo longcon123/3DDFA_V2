@@ -43,7 +43,7 @@ def read_csv(csv_path):
 
 filenames = next(os.walk('/home/long/3DDFA_V2/video/videos'), (None, None, []))[2]
 print(filenames)
-images_out_dir = '/home/long/3DDFA_V2/data/rgb'
+images_out_dir = '/home/long/3DDFA_V2/data'
 label_csv = read_csv('/home/long/3DDFA_V2/video/label.csv')
 vids_path = '/home/long/3DDFA_V2/video/videos/'
 #face_detector = FaceDetection()
